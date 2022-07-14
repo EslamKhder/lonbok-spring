@@ -1,8 +1,12 @@
 package com.spring.lombok.controller;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,15 +15,19 @@ import com.spring.lombok.model.Student;
 
 @RestController
 @RequestMapping("/student")
+@Slf4j
 public class StudentController {
 
+    //public static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
 
     @GetMapping("/all")
     public List<Student> getStudents(){
+        log.info("inside getStudents function");
         return create();
     }
 
     private List<Student> create(){
+        log.info("inside create function");
         List<Student> students = new ArrayList<>();
         Student student1 =
                 Student.builder().id(1L).name("Osama").address("Cairo").age("30").build();
@@ -39,12 +47,11 @@ public class StudentController {
         Student student5 = new Student();
         student5.setId(1L);student5.setName("Eslam");
         student5.setAddress("add_1");student5.setAge("20");
-
+/*
         System.out.println("Res : " + student4.equals(student5));
-
         System.out.println(student4.hashCode());
         System.out.println(student5.hashCode());
-
+*/
         Student student6 = new Student();
 
         students.add(student1);
@@ -53,13 +60,13 @@ public class StudentController {
         students.add(student4);
         students.add(student5);
         students.add(student6);
-
-        System.out.println(student1.toString());
+        log.info(student1.toString());
+        /*System.out.println(student1.toString());
         System.out.println(student2.toString());
         System.out.println(student3.toString());
         System.out.println(student4.toString());
         System.out.println(student5.toString());
-        System.out.println(student6.toString());
+        System.out.println(student6.toString());*/
         return students;
     }
 }
